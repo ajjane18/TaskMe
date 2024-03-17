@@ -1,0 +1,21 @@
+/* Styling the main body*/
+body {
+    background-color: aliceblue;
+}
+
+/*Styling the h1 tag*/
+h1{
+    background-color: lightpink;
+    padding: 20px;
+    text-align: center;
+}
+
+/*Styling the img tag*/
+img{
+    float: left;
+    border-style: solid;
+    border-color: gold;
+    border-radius: 60px;
+    border: goldenrod;
+    padding: 15px;
+}
