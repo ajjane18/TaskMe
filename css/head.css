@@ -1,0 +1,25 @@
+/*Styling the h1 tag*/
+h1{
+    background-color: lightpink;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+/*Styling the img tag*/
+img{
+    float: left;
+    border-style: solid;
+    border-color: gold;
+    border-radius: 60px;
+    border: goldenrod;
+    padding: 7px;
+}
+
+#logo {
+    float: left;
+}
+
+#user, #notifs{
+    float: right;
+}
