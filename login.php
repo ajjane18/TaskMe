@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+global$password; <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -29,35 +29,37 @@ include "header.php";
     <div style="clear: both;"></div>
 </div>
 <?php
-//$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$dbname = "taskme";
-//
-//$connec = new mysqli($servername, $username,$password, $dbname);
-//
-//if(connec -> connect_error){
-//    die("Connection failed" . $connec->connect_error);
-//}
-//
-//$user_name = $_POST['Username'];
-//$F_name = $_POST['Firstname'];
-//$L_name = $_POST['Lastname'];
-//$age = $_POST['Age'];
-//$password = $_POST['Password'];
-//$email = $_POST['email'];
-//
-//$sql = "INSERT INTO login (username, password, email) values ('$user_name', '$F_name', 'L_name', '$age', '$password', '$email')";
-//
-//if($connec->query($sql) === true){
-//
-//}
-//else{
-//    echo "error" . $sql . "<br>" . $connec->error;
-//
-//}
-//
-//$connec->close();
+
+// Include config file
+require_once 'config.php';
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    try {
+        // Create a PDO instance
+        $conn = new PDO("mysql:host=" . Config::DB_HOST . ";dbname=" . Config::DB_NAME, Config::DB_USER, Config::DB_PASSWORD);
+        // Set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Retrieve username and password from the form
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // Prepare and execute the SQL query to insert data into the database
+        $stmt = $conn->prepare("INSERT INTO login (username, password) VALUES (:username, :password)");
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+
+        echo "New record created successfully";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+
+    // Close connection
+    $conn = null;
+}
+
 ?>
 </body>
 </html>
