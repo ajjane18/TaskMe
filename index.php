@@ -24,6 +24,79 @@
 }
 */
 
+
+// Include config file
+require_once 'config.php';
+
+// Create task operation
+if (isset($_POST['submit'])) {
+    try {
+        $conn = new PDO($dsn, $username, $password, $options);
+
+        $new_task = array(
+            "Type" => $_POST['Type'],
+            "DueDate" => $_POST['DueDate']
+        );
+
+        $sql = sprintf(
+            "INSERT INTO Task (Type, DueDate) VALUES (:Type, :DueDate)"
+        );
+
+        $statement = $conn->prepare($sql);
+        $statement->execute($new_task);
+    } catch (PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+// Read task operation
+try {
+    $conn = new PDO($dsn, $username, $password, $options);
+    $sql = "SELECT * FROM Task";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $error) {
+    echo $sql . "<br>" . $error->getMessage();
+}
+
+// Update operation
+if (isset($_POST['update'])) {
+    try {
+        $conn = new PDO($dsn, $username, $password, $options);
+
+        $updated_task = array(
+            "id" => $_POST['id'],
+            "Type" => $_POST['Type'],
+            "DueDate" => $_POST['DueDate']
+        );
+
+        $sql = "UPDATE Task SET Type = :Type, DueDate = :DueDate WHERE id = :id";
+
+        $statement = $conn->prepare($sql);
+        $statement->execute($updated_task);
+    } catch (PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+// Delete operation
+if (isset($_POST['delete'])) {
+    try {
+        $conn = new PDO($dsn, $username, $password, $options);
+
+        $id = $_POST['id'];
+        $sql = "DELETE FROM Task WHERE id = :id";
+
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+    } catch (PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+
 include "header.php";
 
 ?>
@@ -131,7 +204,6 @@ include "header.php";
     </div>
 
 </form>
-
 </body>
 </html>
 
