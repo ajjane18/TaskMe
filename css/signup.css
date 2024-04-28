@@ -1,0 +1,53 @@
+/* Styling the main body*/
+body {
+    background-color: aliceblue;
+}
+
+/*Styling the h1 tag*/
+h1{
+    background-color: lightpink;
+    padding: 20px;
+    text-align: center;
+}
+
+/*Styling the img tag*/
+img{
+    border-style: solid;
+    border-color: gold;
+    border-radius: 60px;
+    border: goldenrod;
+    padding: 6px;
+}
+
+/*Styling the input tags*/
+input{
+    background-color: lightskyblue;
+    border: none;
+    padding: 20px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 40px;
+}
+
+.sign{
+    text-align: center;
+    margin-right: auto;
+    border: none;
+    padding: 20px 70px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 40px;
+}
+
+.welcomePage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+}
+
+button{
+    background-color: lightskyblue;
+}
