@@ -2,7 +2,7 @@
 global $sql, $conn;
 $host = "localhost";
 $username = "root";
-$password = "Aj$5567$070094";
+$password = " ";
 $dbname = "taskMe";
 $dsn = "mysql:host=$host;dbname=$dbname";
 $options = array(
